@@ -1,0 +1,35 @@
+#Router_Model: WRT54G ver.6
+#Firmware: DD-WRT v24-sp2 (10/10/09) micro
+#https://wiki.dd-wrt.com/wiki/index.php/Iptables_command
+#https://wiki.dd-wrt.com/wiki/index.php/Script_Execution
+#https://wiki.dd-wrt.com/wiki/index.php/Access_Restrictions
+#https://wiki.dd-wrt.com/wiki/index.php/SES_Button
+#https://wiki.dd-wrt.com/wiki/index.php/LED_Scripts#Linksys_WRT54G
+#https://forum.dd-wrt.com/phpBB2/viewtopic.php?p=486225
+#https://forum.dd-wrt.com/phpBB2/viewtopic.php?t=307182
+#https://forum.dd-wrt.com/phpBB2/viewtopic.php?t=335670
+#http://portquiz.net:6672/
+#Access_Restrictions
+##WAN_Access:Access_Policy
+##Policy:1(gtaosolo)
+##Policy_Name:gtaosolo
+##Blocked_Services:gtao_6672;UDP_6672~6672;gtao_61455_61458;UDP_61455~61458
+
+mkdir /tmp/etc/config
+echo '#!/bin/sh
+    #Enable Access Policy 1 and restart firewall
+    /usr/sbin/nvram set filter_rule1="\$STAT:1\$NAME:gtaosolo\$DENY:0\$\$" && /sbin/stopservice firewall && /sbin/startservice firewall
+    gpio enable 3 #(LED - white, Cisco button v. 3.0+; Linksys WRT54G)
+    gpio disable 2 #(LED - amber, Cisco button v. 3.0+; Linksys WRT54G)
+    for i in 1 2 3 4 5;do
+        gpio enable 7 #(LED - DMZ; Linksys WRT54G)
+        sleep 1
+        gpio disable 7 #(LED - DMZ; Linksys WRT54G)
+        sleep 1
+    done
+    #Disable Access Policy 1 and restart firewall
+    /usr/sbin/nvram set filter_rule1="\$STAT:0\$NAME:gtaosolo\$DENY:0\$\$" && /sbin/stopservice firewall && /sbin/startservice firewall
+    gpio disable 3 #(LED - white, Cisco button v. 3.0+; Linksys WRT54G)
+    gpio enable 2 #(LED - amber, Cisco button v. 3.0+; Linksys WRT54G)
+' > /tmp/etc/config/gtaosolo.sesbutton
+chmod +x /tmp/etc/config/gtaosolo.sesbutton
