@@ -2,7 +2,7 @@ GTAO Useful Firewall Rules
 
 The scripts can install, uninstall, enable, and disable two windows firewall rules: 
 1. gtaoSoloRule - if enabled, blocks all outgoing traffic on udp port 6672 for any ip address. 
-2. gtaoRelayRule - if enabled, blocks all outgoing traffic on udp port 6672 for a set of ip addresses.
+2. gtaoRelayRule - if enabled, blocks all outgoing traffic on udp port 6672 for a set of ip addresses (tunnels all traffic through t2's matchmaking servers).
 
 - The controls for the ahk script are as follows: 
 
