@@ -1,4 +1,4 @@
-:: GTAO Useful Firewall Rules Script v250915
+:: GTAO Useful Firewall Rules Script v260104
 @echo off 
 set "title=GTAO Useful Firewall Rules Script"
 set "name_solo=gtaoSoloRule"
@@ -11,7 +11,7 @@ set "del_rule=%firewall_cmd%delete rule name="
 set "toggle_parameter=Enabled:                              Yes"
 set "create_parameter=No rules match the specified criteria."
 set "rule_parameters= dir=out action=block enable=no protocol=udp localport=6672"
-set "remote_ip= remoteip=0.0.0.0-20.157.0.0,20.255.255.255-52.131.255.255,52.144.0.0-185.56.63.255,185.56.68.0-192.81.239.255,192.81.248.0-255.255.255.255"
+set "remote_ip= remoteip=0.0.0.0-20.40.183.156,20.40.183.158-20.187.105.38,20.239.134.107-52.139.168.173,52.139.168.241-52.139.169.51,52.139.169.239-185.56.65.166,185.56.65.173-192.81.241.190,192.81.241.192-192.81.241.223,192.81.241.228-192.81.245.122,192.81.245.129-255.255.255.255"
 set "tempSolo=EMPTY_SESSSION"
 set "toggleSolo=TOGGLE_SOLO_MODE"
 set "toggleRelay=TOGGLE_RELAY_MODE"
@@ -195,4 +195,5 @@ goto subpick
 goto subpick
 
 :EOF
+
 @exit
