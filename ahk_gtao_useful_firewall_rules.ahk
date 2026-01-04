@@ -1,8 +1,8 @@
-; GTAO Useful Firewall Rules v250915
+; GTAO Useful Firewall Rules v260104
 #MaxThreadsPerHotkey 2
 SetStoreCapsLockMode, Off
 afkstate := 1
-ipset=0.0.0.0-20.157.0.0,20.255.255.255-52.131.255.255,52.144.0.0-185.56.63.255,185.56.68.0-192.81.239.255,192.81.248.0-255.255.255.255
+ipset=0.0.0.0-20.40.183.156,20.40.183.158-20.187.105.38,20.239.134.107-52.139.168.173,52.139.168.241-52.139.169.51,52.139.169.239-185.56.65.166,185.56.65.173-192.81.241.190,192.81.241.192-192.81.241.223,192.81.241.228-192.81.245.122,192.81.245.129-255.255.255.255
 
 full_command_line := DllCall("GetCommandLine", "str")
 if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)")) {
@@ -175,3 +175,4 @@ return
 	}
 }
 return
+
